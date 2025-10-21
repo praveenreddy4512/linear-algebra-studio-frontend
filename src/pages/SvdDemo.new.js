@@ -1,0 +1,314 @@
+import React, { useState } from 'react';
+import MatrixInput from '../components/MatrixInput';
+import ResultDisplay from '../components/ResultDisplay';
+import SvdDemoControls from '../components/SvdDemoControls';
+import Visualizer2D from '../components/Visualizer2D';
+import { computeMatrix, saveProject } from '../services/api';
+import './SvdDemo.css';
+
+const SvdDemo = () => {
+  const [matrix, setMatrix] = useState([[1, 0], [0, 1]]);
+  const [result, setResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [animationStep, setAnimationStep] = useState(0);
+
+  const handleCompute = async () => {
+    setIsLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const data = await computeMatrix('svd', { matrix });
+      setResult(data.result);
+    } catch (err) {
+      setError(err.response?.data?.error || 'An error occurred while computing SVD');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSaveProject = async () => {
+    if (!result) return;
+
+    try {
+      const projectData = {
+        name: `SVD Analysis - 2×2`,
+        matrixData: { matrix },
+        operation: 'svd',
+        result
+      };
+
+      await saveProject(projectData);
+      alert('Project saved successfully!');
+    } catch (err) {
+      alert('Failed to save project: ' + (err.response?.data?.error || 'Unknown error'));
+    }
+  };
+
+  const getCurrentTransformMatrix = () => {
+    if (!result) return matrix;
+
+    const { U, S, V } = result;
+    
+    switch (animationStep) {
+      case 0: // Original
+        return matrix;
+      case 1: // U rotation
+        return U;
+      case 2: // Σ scaling
+        return [[S[0], 0], [0, S[1]]];
+      case 3: // Vᵀ rotation
+        return [[V[0][0], V[1][0]], [V[0][1], V[1][1]]];
+      case 4: // Final transform
+        try {
+          const sigma = [[S[0], 0], [0, S[1]]];
+          const vT = [[V[0][0], V[1][0]], [V[0][1], V[1][1]]];
+          const us = [
+            [U[0][0]*sigma[0][0] + U[0][1]*sigma[1][0], U[0][0]*sigma[0][1] + U[0][1]*sigma[1][1]],
+            [U[1][0]*sigma[0][0] + U[1][1]*sigma[1][0], U[1][0]*sigma[0][1] + U[1][1]*sigma[1][1]]
+          ];
+          const a = [
+            [us[0][0]*vT[0][0] + us[0][1]*vT[1][0], us[0][0]*vT[0][1] + us[0][1]*vT[1][1]],
+            [us[1][0]*vT[0][0] + us[1][1]*vT[1][0], us[1][0]*vT[0][1] + us[1][1]*vT[1][1]]
+          ];
+          return a;
+        } catch (e) {
+          return matrix;
+        }
+      default:
+        return matrix;
+    }
+  };
+
+  const getAnimationExplanation = () => {
+    const explanations = [
+      {
+        title: "Original Matrix",
+        description: "The input 2×2 matrix that we want to decompose using SVD.",
+        formula: "A"
+      },
+      {
+        title: "U Rotation",
+        description: "First rotation matrix U from the SVD decomposition. This rotates the coordinate system.",
+        formula: "U"
+      },
+      {
+        title: "Σ Scaling",
+        description: "Diagonal matrix of singular values. This scales along the principal axes.",
+        formula: "Σ"
+      },
+      {
+        title: "Vᵀ Rotation",
+        description: "Second rotation matrix Vᵀ from the SVD decomposition. This performs the final rotation.",
+        formula: "Vᵀ"
+      },
+      {
+        title: "Final Transform",
+        description: "The complete transformation A = UΣVᵀ applied to the unit square.",
+        formula: "A = UΣVᵀ"
+      }
+    ];
+
+    return explanations[animationStep] || explanations[0];
+  };
+
+  const getSvdTheory = () => {
+    return (
+      <div className="svd-theory">
+        <h3>Singular Value Decomposition (SVD) Theory</h3>
+        <div className="theory-content">
+          <div className="theory-item">
+            <h4>What is SVD?</h4>
+            <p>
+              SVD decomposes any matrix A into three matrices: A = UΣVᵀ, where:
+            </p>
+            <ul>
+              <li><strong>U:</strong> Orthogonal matrix (rotation/reflection)</li>
+              <li><strong>Σ:</strong> Diagonal matrix of singular values (scaling)</li>
+              <li><strong>V:</strong> Orthogonal matrix (rotation/reflection)</li>
+            </ul>
+          </div>
+          
+          <div className="theory-item">
+            <h4>Geometric Interpretation</h4>
+            <p>
+              Any linear transformation can be decomposed into:
+            </p>
+            <ol>
+              <li>Rotation/reflection (Vᵀ)</li>
+              <li>Scaling along principal axes (Σ)</li>
+              <li>Rotation/reflection (U)</li>
+            </ol>
+          </div>
+          
+          <div className="theory-item">
+            <h4>Applications</h4>
+            <p>
+              SVD is fundamental in many applications including:
+            </p>
+            <ul>
+              <li>Principal Component Analysis (PCA)</li>
+              <li>Data compression and dimensionality reduction</li>
+              <li>Image processing and computer vision</li>
+              <li>Solving least squares problems</li>
+              <li>Recommendation systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="svd-demo">
+      <div className="container">
+        <div className="page-header">
+          <h1>Interactive SVD Visualization</h1>
+          <p className="page-description">
+            Explore Singular Value Decomposition (SVD) through an interactive visualization.
+            See how matrices transform space through rotation, scaling, and rotation steps.
+          </p>
+        </div>
+
+        <div className="matrix-input-section">
+          <h2>Matrix Input</h2>
+          <div className="matrix-input-wrapper">
+            <MatrixInput
+              matrix={matrix}
+              onChange={setMatrix}
+              size={2}
+              label="Enter your 2×2 matrix values"
+            />
+          </div>
+          <div className="matrix-presets">
+            <button className="preset-button identity" onClick={() => setMatrix([[1, 0], [0, 1]])}>
+              <span className="preset-icon">I</span>
+              <span className="preset-label">Identity Matrix</span>
+            </button>
+            <button className="preset-button scaling" onClick={() => setMatrix([[2, 0], [0, 2]])}>
+              <span className="preset-icon">S</span>
+              <span className="preset-label">Scaling Matrix</span>
+            </button>
+            <button className="preset-button rotation" onClick={() => setMatrix([[0, -1], [1, 0]])}>
+              <span className="preset-icon">R</span>
+              <span className="preset-label">Rotation Matrix</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="compute-section">
+          <button 
+            className="control-button primary"
+            onClick={handleCompute}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <div className="button-content">
+                <span className="loading-spinner"></span>
+                <span>Computing SVD...</span>
+              </div>
+            ) : (
+              <div className="button-content">
+                <span className="icon">▶</span>
+                <span>Compute SVD</span>
+              </div>
+            )}
+          </button>
+          
+          {result && (
+            <button 
+              className="control-button save"
+              onClick={handleSaveProject}
+            >
+              <div className="button-content">
+                <span className="icon">💾</span>
+                <span>Save Project</span>
+              </div>
+            </button>
+          )}
+        </div>
+
+        <div className="result-section">
+          <ResultDisplay
+            result={result}
+            operation="svd"
+            isLoading={isLoading}
+            error={error}
+          />
+        </div>
+
+        {result && (
+          <>
+            <div className="visualization-section">
+              <div className="visualization-header">
+                <h3>SVD Transformation Visualization</h3>
+                <p className="visualization-subtitle">
+                  Watch how your matrix transforms space through each step of SVD
+                </p>
+              </div>
+              
+              <div className="visualization-layout">
+                <div className="visualization-main">
+                  <div className="visualizer-container">
+                    <Visualizer2D 
+                      matrix={getCurrentTransformMatrix()} 
+                      showEigenvectors={false}
+                    />
+                    <div className="step-indicator">
+                      {[0, 1, 2, 3, 4].map(step => (
+                        <div 
+                          key={step} 
+                          className={`step-dot ${animationStep === step ? 'active' : ''}`}
+                          title={getAnimationExplanation().title}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="matrix-display-section">
+                    <h4>Current Transformation Matrix:</h4>
+                    <div className="matrix-display">
+                      {getCurrentTransformMatrix().map((row, i) => (
+                        <div key={i} className="matrix-row">
+                          {row.map((cell, j) => (
+                            <span key={j} className="matrix-cell">
+                              {typeof cell === 'number' ? cell.toFixed(3) : cell}
+                            </span>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="animation-details">
+                    <h4>{getAnimationExplanation().title}</h4>
+                    <p>{getAnimationExplanation().description}</p>
+                    <div className="formula-display">
+                      {getAnimationExplanation().formula}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="controls-sidebar">
+                  <SvdDemoControls
+                    matrix={matrix}
+                    onMatrixChange={setMatrix}
+                    onAnimate={setAnimationStep}
+                    currentStep={animationStep}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="theory-section">
+              {getSvdTheory()}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default SvdDemo;

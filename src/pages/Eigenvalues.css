@@ -1,0 +1,325 @@
+.eigenvalues {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.page-description {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.controls-section {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.control-group label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.matrix-section {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.compute-section {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #1e7e34;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.step-by-step {
+  margin-top: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.step-by-step h3 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.step {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.step h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.step p {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.equation {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.eigenvalues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eigenvalue-item {
+  background: #d4edda;
+  padding: 12px 15px;
+  border-radius: 4px;
+  border: 1px solid #c3e6cb;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #155724;
+}
+
+.eigenvectors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eigenvector-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #ffeaa7;
+}
+
+.eigenvector-label {
+  font-weight: bold;
+  color: #856404;
+  min-width: 50px;
+}
+
+.eigenvector-matrix {
+  flex: 1;
+}
+
+.vector-display {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.vector-component {
+  background: #f8f9fa;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid #e9ecef;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.verification {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.verification-item {
+  background: #e3f2fd;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 1px solid #bbdefb;
+  font-family: 'Courier New', monospace;
+  color: #1976d2;
+  text-align: center;
+}
+
+.theory-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+}
+
+.theory-section h3 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+.theory-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.theory-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 6px;
+  border-left: 4px solid #28a745;
+}
+
+.theory-item h4 {
+  color: #28a745;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.theory-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .eigenvalues {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .controls-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .control-group {
+    min-width: auto;
+  }
+
+  .compute-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-by-step {
+    padding: 20px;
+  }
+
+  .eigenvector-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .eigenvector-label {
+    min-width: auto;
+  }
+
+  .theory-content {
+    grid-template-columns: 1fr;
+  }
+}

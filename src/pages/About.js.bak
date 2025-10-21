@@ -1,0 +1,113 @@
+import React from 'react';
+import './About.css';
+
+const About = () => {
+  return (
+    <div className="about">
+      <div className="container">
+        <h1>Development Journey</h1>
+        <p className="page-description">
+          Discover how we built Linear Algebra Studio - a comprehensive web application 
+          that transforms complex linear algebra concepts into interactive visualizations.
+        </p>
+
+        <div className="about-content">
+          <div className="project-overview">
+            <h2>Development Process</h2>
+            <p>
+              Linear Algebra Studio was developed through careful planning and iterative implementation. 
+              We started with a vision to create an intuitive platform for learning linear algebra, 
+              and gradually built each component while constantly refining the user experience through
+              user feedback and testing.
+            </p>
+          </div>
+
+          <div className="core-features">
+            <h2>Core Features</h2>
+            <div className="features-grid">
+              <div className="feature">
+                <div className="feature-icon">🎯</div>
+                <h3>Interactive Matrix Operations</h3>
+                <p>
+                  Perform essential matrix operations like addition, multiplication, and finding 
+                  inverses with an intuitive interface. See results instantly and understand the 
+                  step-by-step process.
+                </p>
+              </div>
+
+              <div className="feature">
+                <div className="feature-icon">�</div>
+                <h3>Visual Eigenvalue Analysis</h3>
+                <p>
+                  Explore eigenvalues and eigenvectors through dynamic visualizations. Understand 
+                  how they represent fundamental properties of linear transformations.
+                </p>
+              </div>
+
+              <div className="feature">
+                <div className="feature-icon">✨</div>
+                <h3>SVD Explorer</h3>
+                <p>
+                  Dive into Singular Value Decomposition with our interactive demo. Watch how matrices 
+                  can be broken down into simpler transformations for better understanding.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="tech-stack">
+            <h2>Built With</h2>
+            <div className="tech-grid">
+              <div className="tech-item">
+                <h3>Frontend</h3>
+                <p>React.js with modern JavaScript, bringing smooth interactivity and responsive design</p>
+              </div>
+              <div className="tech-item">
+                <h3>Backend</h3>
+                <p>Node.js and Express powering the computational engine and API services</p>
+              </div>
+              <div className="tech-item">
+                <h3>Mathematics</h3>
+                <p>Robust mathematical computations using specialized linear algebra libraries</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="project-purpose">
+            <h2>Why This Project?</h2>
+            <p>
+              Linear algebra is fundamental to many fields including computer graphics, machine learning, 
+              data science, and engineering. However, understanding these concepts can be challenging 
+              without proper visualization tools. Linear Algebra Studio addresses this need by providing:
+            </p>
+            <ul>
+              <li>Interactive visualization of abstract concepts</li>
+              <li>Real-time computation and feedback</li>
+              <li>Intuitive interface for experimentation</li>
+              <li>Practical examples from various fields</li>
+            </ul>
+          </div>
+
+          <div className="get-started">
+            <h2>Start Exploring</h2>
+            <p>
+              Begin your journey with Linear Algebra Studio by trying out our interactive tools. 
+              Whether you're a student learning the basics or a professional looking for visualization 
+              tools, we've got you covered.
+            </p>
+            <div className="cta-buttons">
+              <a href="/matrix-operations" className="btn btn-primary">
+                Try Matrix Operations
+              </a>
+              <a href="/visualizer-2d" className="btn btn-outline">
+                Explore 2D Visualizer
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;

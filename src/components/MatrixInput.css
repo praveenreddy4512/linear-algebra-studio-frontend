@@ -1,0 +1,71 @@
+.matrix-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.matrix-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.matrix-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.matrix-bracket-left,
+.matrix-bracket-right {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  font-family: 'Times New Roman', serif;
+}
+
+.matrix-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.matrix-row {
+  display: flex;
+  gap: 5px;
+}
+
+.matrix-input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.matrix-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.matrix-input:hover {
+  border-color: #007bff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .matrix-input {
+    width: 50px;
+    height: 35px;
+    font-size: 12px;
+  }
+  
+  .matrix-bracket-left,
+  .matrix-bracket-right {
+    font-size: 1.5rem;
+  }
+}

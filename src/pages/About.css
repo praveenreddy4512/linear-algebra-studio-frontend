@@ -1,0 +1,346 @@
+.about {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  color: #1a365d;
+  margin-bottom: 20px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a365d 0%, #4361ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.page-description {
+  color: #4a5568;
+  margin-bottom: 60px;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.project-overview,
+.core-features,
+.tech-stack,
+.project-purpose,
+.get-started {
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-overview:hover,
+.core-features:hover,
+.tech-stack:hover,
+.project-purpose:hover,
+.get-started:hover {
+  transform: translateY(-5px);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.feature {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(67, 97, 238, 0.12);
+}
+
+.feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #4361ee, #00d4ff);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 24px;
+  display: inline-block;
+  background: linear-gradient(135deg, #4361ee, #00d4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature h3 {
+  color: #1a365d;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.feature p {
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.tech-item {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(67, 97, 238, 0.1);
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(67, 97, 238, 0.12);
+}
+
+.tech-item h3 {
+  color: #1a365d;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4361ee, #00d4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tech-item p {
+  color: #4a5568;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.project-purpose {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-purpose h2,
+.project-overview h2,
+.core-features h2,
+.tech-stack h2,
+.get-started h2 {
+  color: #1a365d;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.project-purpose h2::after,
+.project-overview h2::after,
+.core-features h2::after,
+.tech-stack h2::after,
+.get-started h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #4361ee, #00d4ff);
+  border-radius: 2px;
+}
+
+.project-purpose p,
+.project-overview p {
+  color: #4a5568;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.project-purpose ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+.project-purpose li {
+  padding: 12px 0;
+  padding-left: 36px;
+  position: relative;
+  color: #4a5568;
+  font-size: 1.1rem;
+}
+
+.project-purpose li:before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  background: linear-gradient(135deg, #4361ee, #00d4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.get-started {
+  text-align: center;
+  background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+  color: white;
+}
+
+.get-started h2 {
+  color: white;
+}
+
+.get-started h2::after {
+  background: white;
+  width: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.get-started p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.1rem;
+  min-width: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: white;
+  color: #4361ee;
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .page-description {
+    font-size: 1.2rem;
+  }
+
+  .features-grid,
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .feature,
+  .tech-item {
+    padding: 30px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-purpose h2,
+  .project-overview h2,
+  .core-features h2,
+  .tech-stack h2,
+  .get-started h2 {
+    font-size: 1.8rem;
+  }
+
+  .feature h3 {
+    font-size: 1.4rem;
+  }
+}
